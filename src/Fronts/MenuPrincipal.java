@@ -15,6 +15,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
      */
     public MenuPrincipal() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setTitle("Directorio Telefonico");
+        this.setResizable(false);
     }
 
     /**
