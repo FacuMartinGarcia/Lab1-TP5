@@ -1,12 +1,17 @@
+package Entidades;
+
+import java.util.TreeMap;
+
 public class Directorio {
 // Cambios, nombre al map e inicia en el constructor.
     private TreeMap<Long,Contacto> directorio;
 
     public Directorio() {
-        this.directorio= new TreeMap<>();
+        directorio= new TreeMap<>();
     }
 
-    public void agregarContacto() {
+    public void agregarContacto(Long telefono, Contacto contacto) {
+        directorio.put(telefono, contacto);
     }
 
     public void buscarContacto() {
