@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Directorio">
+  <ClassDiagramComponents>
+    <Class name="Telefono" package="" visibility="public" xPosition="697.0" yPosition="335.0">
+      <Fields>
+        <Field name="telefono" type="long" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="long" name="telefono"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Contacto" package="" visibility="public" xPosition="48.0" yPosition="307.0">
+      <Fields>
+        <Field name="DNI" type="int" visibility="private"/>
+        <Field name="nombre" type="String" visibility="private"/>
+        <Field name="apellido" type="String" visibility="private"/>
+        <Field name="ciudad" type="String" visibility="private"/>
+        <Field name="direccion" type="String" visibility="private"/>
+        <Field name="telefono" type="Telefono" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="DNI"/>
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="apellido"/>
+          <Argument type="String" name="ciudad"/>
+          <Argument type="String" name="direccion"/>
+          <Argument type="Telefono" name="telefono"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Directorio" package="" visibility="public" xPosition="251.0" yPosition="6.0">
+      <Fields>
+        <Field name="Contacto" type="Arraylist" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="agregarContacto" returnType="void" visibility="public"/>
+        <Method name="buscarContacto" returnType="void" visibility="public"/>
+        <Method name="buscarTelefono" returnType="void" visibility="public"/>
+        <Method name="buscarContactos" returnType="void" visibility="public"/>
+        <Method name="borrarContacto" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="." source="Contacto" target="Telefono" type="Composition" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="tiene" source="Directorio" target="Contacto" type="Aggregation" sourceCardinality="0..1" targetCardinality="1..*" collectionType="ArrayList"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
