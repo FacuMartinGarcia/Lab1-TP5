@@ -1,8 +1,9 @@
 public class Directorio {
-
-    private TreeMap<Long,Cliente>;
+// Cambios, nombre al map e inicia en el constructor.
+    private TreeMap<Long,Contacto> directorio;
 
     public Directorio() {
+        this.directorio= new TreeMap<>();
     }
 
     public void agregarContacto() {
