@@ -5,18 +5,28 @@
 package Fronts;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Facu
  */
 public class Busquedas extends javax.swing.JInternalFrame {
+    private DefaultTableModel modeloA= new DefaultTableModel(){
+    
+    public boolean isCellEditable(int f, int c){
+        
+        return false;
+    }
+};
 
     /**
      * Creates new form Busquedas
      */
     public Busquedas() {
         initComponents();
+        armarCabecera();
+        
     }
 
     /**
@@ -48,7 +58,7 @@ public class Busquedas extends javax.swing.JInternalFrame {
         cbTipo = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtResultados = new javax.swing.JTable();
         btBuscar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -113,7 +123,7 @@ public class Busquedas extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtResultados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -124,7 +134,7 @@ public class Busquedas extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jtResultados);
 
         btBuscar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btBuscar.setText("Buscar");
@@ -265,7 +275,19 @@ public class Busquedas extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jtResultados;
     private javax.swing.JTextField tbValor;
     // End of variables declaration//GEN-END:variables
+
+    private void armarCabecera(){
+
+        modeloA.addColumn("DNI");
+        modeloA.addColumn("Nombre");
+        modeloA.addColumn("Apellido");
+        modeloA.addColumn("Direccion");
+        modeloA.addColumn("Ciudad");
+        modeloA.addColumn("Telefono");
+        jtResultados.setModel(modeloA);
+    }
 }
+

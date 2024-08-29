@@ -87,7 +87,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void jMenuItem1directorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1directorioActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
-        Directorio dir= new Directorio();
+        modeloEscritorio dir= new modeloEscritorio();
         dir.setVisible(true);
         escritorio.add(dir);
         escritorio.moveToFront(dir);      

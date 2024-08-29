@@ -25,4 +25,13 @@ public class Directorio {
 
     public void borrarContacto() {
     }
+    
+    public void mostrarTree() {
+        
+        // ERROR
+        
+        directorio.values();//Devuelve una colección de los valores contenidos en 
+        //este mapa.
+        //System.out.println(directorio.values() + directorio.);
+    }
 }

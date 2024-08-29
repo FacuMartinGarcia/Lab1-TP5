@@ -4,16 +4,21 @@
  */
 package Fronts;
 
+import Entidades.Contacto;
+import Entidades.Directorio;
+import java.util.Map;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Facu
  */
-public class Directorio extends javax.swing.JInternalFrame {
+public class modeloEscritorio extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Directorio
      */
-    public Directorio() {
+    public modeloEscritorio() {
         initComponents();
     }
 
@@ -211,6 +216,40 @@ public class Directorio extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btNuevoActionPerformed
 
     private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
+        if (tbDni.getText().isEmpty() || tbApellido.getText().isEmpty() || tbNombre.getText().isEmpty() || tbCiudad.getText().isEmpty() || tbTelefono.getText().isEmpty() ){
+        
+            JOptionPane.showMessageDialog(null, "Complete todos los datos del Alumno");
+        
+        }else{    //  Si los campos tienen datos, continuamos
+           
+            int respuesta = JOptionPane.showConfirmDialog(null,"¿Está Seguro?","Grabar", JOptionPane.YES_NO_OPTION);
+            
+            
+            if (respuesta == JOptionPane.YES_OPTION) {
+            
+                try {
+                    //el usuario confirmó grabar
+                    //controlar que los datos ingresados tienen el formato correcto
+                    //Convertirmos el txLegajo en INT, ya que es un String, debemos capturar las expeciones por si esta conversion falla.
+                    int dni = Integer.parseInt(tbDni.getText());
+                    Long telefono = Long.parseLong(tbTelefono.getText());
+                     //generar la instancia de la clase CONTACTO
+                    Contacto nuevo = new Contacto(dni,tbNombre.getText().toUpperCase(), tbApellido.getText().toUpperCase(),tbCiudad.getText(),tbDireccion.getText());
+                    Directorio dir = new Directorio();
+                    
+                    //Agregamos el contacto al TreeSet
+                    dir.agregarContacto(telefono, nuevo);
+                    JOptionPane.showMessageDialog(null, "Se ha guardado el alumno...");
+                    
+                    dir.mostrarTree();
+                    //blanquearCampos();
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Ingrese los Datos Correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+}
+        }
+
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btGuardarActionPerformed
 
