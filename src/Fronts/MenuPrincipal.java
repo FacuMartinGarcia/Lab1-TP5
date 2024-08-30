@@ -87,7 +87,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void jMenuItem1directorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1directorioActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
-        modeloEscritorio dir= new modeloEscritorio();
+        FormDirectorio dir= new FormDirectorio();
         dir.setVisible(true);
         escritorio.add(dir);
         escritorio.moveToFront(dir);      
@@ -96,7 +96,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void jMenuItem1busquedasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1busquedasActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
-        Busquedas bus = new Busquedas();
+        FomBusquedas bus = new FomBusquedas();
         bus.setVisible(true);
         escritorio.add(bus);
         escritorio.moveToFront(bus);  

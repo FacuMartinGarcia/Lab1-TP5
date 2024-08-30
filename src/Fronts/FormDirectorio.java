@@ -13,12 +13,13 @@ import javax.swing.JOptionPane;
  *
  * @author Facu
  */
-public class modeloEscritorio extends javax.swing.JInternalFrame {
-
+public class FormDirectorio extends javax.swing.JInternalFrame {
+    
+    Directorio dir = new Directorio();
     /**
      * Creates new form Directorio
      */
-    public modeloEscritorio() {
+    public FormDirectorio() {
         initComponents();
     }
 
@@ -235,13 +236,13 @@ public class modeloEscritorio extends javax.swing.JInternalFrame {
                     Long telefono = Long.parseLong(tbTelefono.getText());
                      //generar la instancia de la clase CONTACTO
                     Contacto nuevo = new Contacto(dni,tbNombre.getText().toUpperCase(), tbApellido.getText().toUpperCase(),tbCiudad.getText(),tbDireccion.getText());
-                    Directorio dir = new Directorio();
+                   // Directorio dir = new Directorio();
                     
                     //Agregamos el contacto al TreeSet
                     dir.agregarContacto(telefono, nuevo);
-                    JOptionPane.showMessageDialog(null, "Se ha guardado el alumno...");
+
                     
-                    dir.mostrarTree();
+                    dir.mostrarDirectorio();
                     //blanquearCampos();
                 } catch (NumberFormatException e) {
                     JOptionPane.showMessageDialog(null, "Ingrese los Datos Correctamente", "Error", JOptionPane.ERROR_MESSAGE);

@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Facu
  */
-public class Busquedas extends javax.swing.JInternalFrame {
+public class FomBusquedas extends javax.swing.JInternalFrame {
     private DefaultTableModel modeloA= new DefaultTableModel(){
     
     public boolean isCellEditable(int f, int c){
@@ -23,7 +23,7 @@ public class Busquedas extends javax.swing.JInternalFrame {
     /**
      * Creates new form Busquedas
      */
-    public Busquedas() {
+    public FomBusquedas() {
         initComponents();
         armarCabecera();
         
