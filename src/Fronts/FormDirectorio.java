@@ -211,7 +211,49 @@ public class FormDirectorio extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+   
+    private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {                                        
+    try {
+        Long telefono = Long.parseLong(tbTelefono.getText());
+        Contacto contacto = dir.buscarContacto(telefono); // Implementa este método en Directorio
+        if (contacto != null) {
+            // Muestra los datos del contacto en los campos de texto
+            tbDni.setText(String.valueOf(contacto.getDni()));
+            tbNombre.setText(contacto.getNombre());
+            tbApellido.setText(contacto.getApellido());
+            tbDireccion.setText(contacto.getDireccion());
+            tbCiudad.setText(contacto.getCiudad());
+        } else {
+            JOptionPane.showMessageDialog(null, "Contacto no encontrado.");
+        }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Número de teléfono inválido.");
+    }
+}
 
+    private void btBorrarActionPerformed(java.awt.event.ActionEvent evt) {                                        
+    try {
+        Long telefono = Long.parseLong(tbTelefono.getText());
+        boolean borrado = dir.borrarContacto(telefono); // Implementa este método en Directorio
+        if (borrado) {
+            JOptionPane.showMessageDialog(null, "Contacto eliminado.");
+            // Limpia los campos de texto
+            tbDni.setText("");
+            tbNombre.setText("");
+            tbApellido.setText("");
+            tbDireccion.setText("");
+            tbCiudad.setText("");
+            tbTelefono.setText("");
+        } else {
+            JOptionPane.showMessageDialog(null, "Contacto no encontrado.");
+        }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Número de teléfono inválido.");
+    }
+    
+}
+
+    
     private void btNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNuevoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btNuevoActionPerformed
