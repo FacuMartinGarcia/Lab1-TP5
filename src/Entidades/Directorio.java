@@ -35,7 +35,7 @@ public class Directorio {
 
     public void borrarContacto() {
     }
-    
+    //test
     public void mostrarDirectorio() {
         System.out.println("****Directorio*****");
         for (Map.Entry<Long, Contacto> entry : directorio.entrySet()) {
