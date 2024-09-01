@@ -4,11 +4,15 @@
  */
 package Fronts;
 
+import Entidades.Directorio;
+
 /**
  *
  * @author Facu
  */
 public class MenuPrincipal extends javax.swing.JFrame {
+
+    private Directorio directorio;  
 
     /**
      * Creates new form MenuPrincipal
@@ -18,6 +22,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setTitle("Directorio Telefonico");
         this.setResizable(false);
+        directorio = new Directorio();
+        
     }
 
     /**
@@ -87,7 +93,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void jMenuItem1directorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1directorioActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
-        FormDirectorio dir= new FormDirectorio();
+        FormDirectorio dir= new FormDirectorio(directorio);
         dir.setVisible(true);
         escritorio.add(dir);
         escritorio.moveToFront(dir);      
@@ -96,7 +102,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void jMenuItem1busquedasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1busquedasActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
-        FomBusquedas bus = new FomBusquedas();
+        FomBusquedas bus = new FomBusquedas(directorio);
         bus.setVisible(true);
         escritorio.add(bus);
         escritorio.moveToFront(bus);  
@@ -133,6 +139,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MenuPrincipal().setVisible(true);
+                
             }
         });
     }

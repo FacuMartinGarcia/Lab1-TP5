@@ -15,11 +15,12 @@ import javax.swing.JOptionPane;
  */
 public class FormDirectorio extends javax.swing.JInternalFrame {
     
-    Directorio dir = new Directorio();
+    private Directorio directorio;
     /**
      * Creates new form Directorio
      */
-    public FormDirectorio() {
+    public FormDirectorio(Directorio directorio) {
+        this.directorio=directorio;
         initComponents();
     }
 
@@ -215,7 +216,7 @@ public class FormDirectorio extends javax.swing.JInternalFrame {
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {                                        
     try {
         Long telefono = Long.parseLong(tbTelefono.getText());
-        Contacto contacto = dir.buscarContacto(telefono); // Implementa este método en Directorio
+        Contacto contacto = directorio.buscarContacto(telefono); // Implementa este método en Directorio
         if (contacto != null) {
             // Muestra los datos del contacto en los campos de texto
             tbDni.setText(String.valueOf(contacto.getDni()));
@@ -234,7 +235,7 @@ public class FormDirectorio extends javax.swing.JInternalFrame {
     private void btBorrarActionPerformed(java.awt.event.ActionEvent evt) {                                        
     try {
         Long telefono = Long.parseLong(tbTelefono.getText());
-        boolean borrado = dir.borrarContacto(telefono); // Implementa este método en Directorio
+        boolean borrado = directorio.borrarContacto(telefono); // Implementa este método en Directorio
         if (borrado) {
             JOptionPane.showMessageDialog(null, "Contacto eliminado.");
             // Limpia los campos de texto
@@ -275,16 +276,20 @@ public class FormDirectorio extends javax.swing.JInternalFrame {
                     //controlar que los datos ingresados tienen el formato correcto
                     //Convertirmos el txLegajo en INT, ya que es un String, debemos capturar las expeciones por si esta conversion falla.
                     int dni = Integer.parseInt(tbDni.getText());
+                    String nombre = tbNombre.getText();
+                    String apellido = tbApellido.getText();
+                    String ciudad = tbCiudad.getText();
+                    String direccion = tbDireccion.getText();
                     Long telefono = Long.parseLong(tbTelefono.getText());
                      //generar la instancia de la clase CONTACTO
-                    Contacto nuevo = new Contacto(dni,tbNombre.getText().toUpperCase(), tbApellido.getText().toUpperCase(),tbCiudad.getText(),tbDireccion.getText());
+                    Contacto contacto = new Contacto(dni,nombre.toUpperCase(), apellido.toUpperCase(),ciudad,direccion);
                    // Directorio dir = new Directorio();
                     
                     //Agregamos el contacto al TreeSet
-                    dir.agregarContacto(telefono, nuevo);
+                    directorio.agregarContacto(telefono, contacto);
+                    JOptionPane.showMessageDialog(null, "Se ha guardado el alumno...");
 
-                    
-                    dir.mostrarDirectorio();
+                    directorio.mostrarDirectorio();
                     //blanquearCampos();
                 } catch (NumberFormatException e) {
                     JOptionPane.showMessageDialog(null, "Ingrese los Datos Correctamente", "Error", JOptionPane.ERROR_MESSAGE);

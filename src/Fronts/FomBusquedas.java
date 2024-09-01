@@ -4,6 +4,9 @@
  */
 package Fronts;
 
+import Entidades.Contacto;
+import Entidades.Directorio;
+import java.util.Set;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -12,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Facu
  */
 public class FomBusquedas extends javax.swing.JInternalFrame {
+    private Directorio directorio;
     private DefaultTableModel modeloA= new DefaultTableModel(){
     
     public boolean isCellEditable(int f, int c){
@@ -23,9 +27,11 @@ public class FomBusquedas extends javax.swing.JInternalFrame {
     /**
      * Creates new form Busquedas
      */
-    public FomBusquedas() {
+    public FomBusquedas(Directorio directorio) {
+        this.directorio=directorio;
         initComponents();
         armarCabecera();
+        
         
     }
 
@@ -218,17 +224,39 @@ public class FomBusquedas extends javax.swing.JInternalFrame {
 
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
         
-        if (tbValor.getText().isEmpty()){
+        String valor= tbValor.getText();
+        if (valor.isEmpty()){
             JOptionPane.showMessageDialog(this, "Ingrese un valor a buscar!");
             return;
         }else{
             // depende el cbTipo seleccionado, es donde vamos a buscar
             switch (cbTipo.getSelectedIndex()) {
                 case 0: //Buscar por número de teléfono
-                    JOptionPane.showMessageDialog(this, "BUSCAR Por Telefono");
+//                  
+                    Long telefono= Long.parseLong(valor);
+                    System.out.println(telefono);
+                    Contacto contacto = directorio.buscarContacto(telefono);
+                    System.out.println(contacto);
+                    
+                    if (contacto != null){
+                        System.out.println("MOSTRANDO DATOS");
+                        modeloA.addRow(new Object[]{contacto.getDni(),contacto.getNombre(),contacto.getApellido(),contacto.getDireccion(),contacto.getCiudad(), telefono} );
+                    }else{
+                        System.out.println("Anda mal pa");
+                        
+                    }
+                    
                     break;
+
+
                 case 1: //Buscar los contactos con el apellido 
-                    JOptionPane.showMessageDialog(this, "BUSCAR Por Apellido");
+//                    JOptionPane.showMessageDialog(this, "BUSCAR Por Apellido");
+                    Set<Long> telefonos = directorio.buscarTelefono(valor);
+                    System.out.println();
+                        for (Long tel : telefonos) {
+                            Contacto c = directorio.buscarContacto(tel);
+                            modeloA.addRow(new Object[]{c.getDni(), c.getNombre(), c.getApellido(), c.getCiudad(), c.getDireccion(), tel});
+                        }
                     break;
                 case 2: //Buscar los contactos de la ciudad   
                     JOptionPane.showMessageDialog(this, "BUSCAR Por Ciudad");    
@@ -288,6 +316,9 @@ public class FomBusquedas extends javax.swing.JInternalFrame {
         modeloA.addColumn("Ciudad");
         modeloA.addColumn("Telefono");
         jtResultados.setModel(modeloA);
+    }
+    private void cargarDatos(Contacto contacto){
+        modeloA.addRow(new Object[]{contacto.getDni(),contacto.getNombre(),contacto.getApellido(),contacto.getDireccion(),contacto.getCiudad()});
     }
 }
 

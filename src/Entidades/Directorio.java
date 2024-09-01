@@ -12,11 +12,8 @@ import javax.swing.JOptionPane;
 
 public class Directorio {
 // Cambios, nombre al map e inicia en el constructor.
-    private TreeMap<Long,Contacto> directorio;
+    private TreeMap<Long,Contacto> directorio = new TreeMap<>();
 
-    public Directorio() {
-        directorio= new TreeMap<>();
-    }
 
     public void agregarContacto(Long telefono, Contacto contacto) {
     
@@ -24,18 +21,25 @@ public class Directorio {
             JOptionPane.showMessageDialog(null,"Ya Existe ese numero de telefono, si lo graba sobrescribe los datos del contacto");
         }else{    
             directorio.put(telefono, contacto);
-             JOptionPane.showMessageDialog(null, "Se ha guardado el alumno...");
+            
         }
 
     }
 
     public Contacto buscarContacto(Long telefono) {
-        if (directorio.containsKey(telefono)) {
-            return directorio.get(telefono);
-        } else {
-            JOptionPane.showMessageDialog(null, "El contacto con el teléfono " + telefono + " no existe.");
-            return null;
+        
+        System.out.println("Contenido del directorio:");
+    for (Map.Entry<Long, Contacto> entry : directorio.entrySet()) {
+        System.out.println("Teléfono: " + entry.getKey() + ", Contacto: " + entry.getValue());
+    }
+        Contacto contacto = directorio.get(telefono);
+        System.out.println("Datos del metodo buscarContacto");
+        System.out.println(contacto);
+        
+        if(contacto == null){
+            JOptionPane.showMessageDialog(null, "El contacto con el telefono " + telefono + "no existe.");
         }
+        return contacto;
     }
 
     public Set<Long> buscarTelefono(String apellido) {
