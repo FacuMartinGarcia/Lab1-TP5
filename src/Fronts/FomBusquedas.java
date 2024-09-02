@@ -6,6 +6,7 @@ package Fronts;
 
 import Entidades.Contacto;
 import Entidades.Directorio;
+import java.util.ArrayList;
 import java.util.Set;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -31,6 +32,7 @@ public class FomBusquedas extends javax.swing.JInternalFrame {
         this.directorio=directorio;
         initComponents();
         armarCabecera();
+        btBorrar.setVisible(false);
         
         
     }
@@ -70,6 +72,7 @@ public class FomBusquedas extends javax.swing.JInternalFrame {
         jSeparator1 = new javax.swing.JSeparator();
         btSalir = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        btBorrar = new javax.swing.JButton();
 
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
@@ -163,40 +166,53 @@ public class FomBusquedas extends javax.swing.JInternalFrame {
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8-buscar-cliente-80.png"))); // NOI18N
 
+        btBorrar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btBorrar.setForeground(new java.awt.Color(255, 0, 0));
+        btBorrar.setText("Borrar Contacto");
+        btBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBorrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 106, Short.MAX_VALUE))
-                    .addComponent(jSeparator1))
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(btBorrar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(35, 35, 35)))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 15, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(94, 94, 94))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btBorrar, btBuscar});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -204,68 +220,117 @@ public class FomBusquedas extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1)
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btBuscar)
-                .addGap(24, 24, 24)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btBuscar)
+                            .addComponent(btBorrar))))
                 .addGap(27, 27, 27)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btSalir)
-                .addContainerGap())
+                .addGap(20, 20, 20))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btBorrar, btBuscar});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
         
-        String valor= tbValor.getText();
-        if (valor.isEmpty()){
-            JOptionPane.showMessageDialog(this, "Ingrese un valor a buscar!");
-            return;
-        }else{
-            // depende el cbTipo seleccionado, es donde vamos a buscar
-            switch (cbTipo.getSelectedIndex()) {
-                case 0: //Buscar por número de teléfono
-//                  
-                    Long telefono= Long.parseLong(valor);
-                    System.out.println(telefono);
-                    Contacto contacto = directorio.buscarContacto(telefono);
-                    System.out.println(contacto);
-                    
-                    if (contacto != null){
-                        System.out.println("MOSTRANDO DATOS");
-                        modeloA.addRow(new Object[]{contacto.getDni(),contacto.getNombre(),contacto.getApellido(),contacto.getDireccion(),contacto.getCiudad(), telefono} );
-                    }else{
-                        System.out.println("Anda mal pa");
-                        
-                    }
-                    
-                    break;
+        
+        
+        try {
+            
+            String valor= tbValor.getText();
+            if (valor.isEmpty()){
+                JOptionPane.showMessageDialog(this, "Ingrese un valor a buscar!");
+                btBorrar.setVisible(false);
+                return;
+            }else{
+                //limpiar la tabla
+                modeloA.setRowCount(0); 
 
+                // depende el cbTipo seleccionado, es donde vamos a buscar
+                switch (cbTipo.getSelectedIndex()) {
 
-                case 1: //Buscar los contactos con el apellido 
-//                    JOptionPane.showMessageDialog(this, "BUSCAR Por Apellido");
-                    Set<Long> telefonos = directorio.buscarTelefono(valor);
-                    System.out.println();
-                        for (Long tel : telefonos) {
-                            Contacto c = directorio.buscarContacto(tel);
-                            modeloA.addRow(new Object[]{c.getDni(), c.getNombre(), c.getApellido(), c.getCiudad(), c.getDireccion(), tel});
+                    case 0: //Buscar por número de teléfono
+    //                  
+                        Long telefono= Long.parseLong(valor);
+                        Contacto contacto = directorio.buscarContacto(telefono);
+
+                        if (contacto != null){
+                            //Si el método devuelve un contacto, lo muestra en la tabla
+                            modeloA.addRow(new Object[]{contacto.getDni(),contacto.getNombre(),contacto.getApellido(),contacto.getDireccion(),contacto.getCiudad(), telefono} );
+                            btBorrar.setVisible(true);
+                        }else{
+                            JOptionPane.showMessageDialog(null, "El teléfono " + telefono + " no existe en el Directorio.");
                         }
-                    break;
-                case 2: //Buscar los contactos de la ciudad   
-                    JOptionPane.showMessageDialog(this, "BUSCAR Por Ciudad");    
-                    break;
-                default:
-                    throw new AssertionError();
 
-            } 
+                        break;
+
+
+                    case 1: //Buscar los contactos con el apellido 
+                        btBorrar.setVisible(false);    
+                        Set<Long> telefonos = directorio.buscarXapellido(valor);
+                        //System.out.println();
+                        if (telefonos.isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "No se encontraron contáctos con ese apellido");
+                        }else{
+                            for (Long tel : telefonos) {
+                                Contacto c = directorio.buscarContacto(tel);
+                                modeloA.addRow(new Object[]{
+                                c.getDni(), 
+                                c.getNombre(), 
+                                c.getApellido(), 
+                                c.getCiudad(), 
+                                c.getDireccion(), 
+                                tel});
+                            }
+                        }    
+                        break;
+
+                    case 2: //Buscar los contactos de la ciudad   
+                        btBorrar.setVisible(false);    
+                        Set<Long> telefonos2 = directorio.buscarXciudad(valor);
+                        //System.out.println();
+                        if (telefonos2.isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "No se encontraron contáctos en la ciudad ingresada");
+                        }else{
+                            for (Long tel : telefonos2) {
+                                Contacto c = directorio.buscarContacto(tel);
+                                modeloA.addRow(new Object[]{
+                                c.getDni(), 
+                                c.getNombre(), 
+                                c.getApellido(), 
+                                c.getCiudad(), 
+                                c.getDireccion(), 
+                                tel});
+                            }
+                        }    
+                        break;
+
+                    default:
+                        throw new AssertionError();
+
+                } 
+            }
+        
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Ingrese un valor válido");
+            tbValor.setText("");
         }
+        
+        
+        
+
      
 
         
@@ -277,8 +342,34 @@ public class FomBusquedas extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_btSalirActionPerformed
 
+    private void btBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBorrarActionPerformed
+
+        //Borrar contacto
+        int respuesta = JOptionPane.showConfirmDialog(null,"¿Está seguro/a?","Borrar Contacto", JOptionPane.YES_NO_OPTION);
+            
+            
+            if (respuesta == JOptionPane.YES_OPTION) {
+
+                String valor= tbValor.getText();
+                Long telefono= Long.parseLong(valor);
+
+                if (directorio.borrarContacto(telefono)==true){
+                    JOptionPane.showMessageDialog(null, "Se ha borrado el contacto");
+                    modeloA.setRowCount(0); 
+                    btBorrar.setVisible(false);  
+                    tbValor.setText("");
+                {
+                    
+                }}
+                
+            }    
+
+
+    }//GEN-LAST:event_btBorrarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btBorrar;
     private javax.swing.JButton btBuscar;
     private javax.swing.JButton btSalir;
     private javax.swing.ButtonGroup buttonGroup1;

@@ -26,45 +26,62 @@ public class Directorio {
 
     }
 
+    public void agregarVariosContactos(){
+    
+        
+        directorio.put(2664484134L,new Contacto(28399283,"FACUNDO", "GARCIA", "LA PUNTA", "PIEDRAS 258"));
+        directorio.put(2664482554L,new Contacto(24544544,"JUAN", "SOLER", "SAN LUIS", "RIOBAMBA 1187"));
+        directorio.put(2664466513L,new Contacto(15321056,"PAULO", "GARCIA", "LA PUNTA", "B° ALGARROBO"));
+        directorio.put(2665745469L,new Contacto(30658785,"DIEGO", "MUÑOZ", "MERLO", "LAFINUR 13"));
+        directorio.put(2664151515L,new Contacto(18101125,"MATIAS", "CUELLO", "MERLO", "BOLIVAR 754"));
+        directorio.put(2664327418L,new Contacto(44752747,"CARLOS", "RAMIREZ", "QUINES", "AVDA ESPAÑA 24"));
+        directorio.put(2664480101L,new Contacto(33993636,"FRANCISCO", "RAMIREZ", "LA PUNTA", "ESTEBAN ADARO 38"));
+        directorio.put(2665965214L,new Contacto(28399285,"MAURICIO", "CUELLO", "SAN LUIS", "LAS ACACIAS 1258"));
+        
+        
+    }
+    
+    
     public Contacto buscarContacto(Long telefono) {
         
-        System.out.println("Contenido del directorio:");
-    for (Map.Entry<Long, Contacto> entry : directorio.entrySet()) {
-        System.out.println("Teléfono: " + entry.getKey() + ", Contacto: " + entry.getValue());
-    }
         Contacto contacto = directorio.get(telefono);
-        System.out.println("Datos del metodo buscarContacto");
-        System.out.println(contacto);
-        
         if(contacto == null){
-            JOptionPane.showMessageDialog(null, "El contacto con el telefono " + telefono + "no existe.");
+            return null;
+        }else{
+            return contacto;
         }
-        return contacto;
     }
 
-    public Set<Long> buscarTelefono(String apellido) {
+    public Set<Long> buscarXapellido(String apellido) {
         Set<Long> telefonos = new TreeSet<>();
+        Boolean encontrado=false;
         for (Map.Entry<Long, Contacto> entry : directorio.entrySet()) {
             if (entry.getValue().getApellido().equalsIgnoreCase(apellido)) {
                 telefonos.add(entry.getKey());
+                encontrado=true;
             }
         }
         return telefonos;
+
     }
-
-
-    public ArrayList<Contacto> buscarContactos(String ciudad) {
-        ArrayList<Contacto> resultados = new ArrayList<>();
-        for (Contacto contacto : directorio.values()) {
-            if (contacto.getCiudad().equalsIgnoreCase(ciudad)) {
-                resultados.add(contacto);
+    
+   
+    public Set<Long> buscarXciudad(String ciudad) {
+        Set<Long> telefonos = new TreeSet<>();
+        Boolean encontrado=false;
+        for (Map.Entry<Long, Contacto> entry : directorio.entrySet()) {
+            if (entry.getValue().getCiudad().equalsIgnoreCase(ciudad)) {
+                telefonos.add(entry.getKey());
+                encontrado=true;
             }
         }
-        return resultados;
-    }
+        return telefonos;
 
-     // Método para borrar un contacto
+    } 
+
+
     public boolean borrarContacto(Long telefono) {
+        // Método para borrar un contacto
         if (directorio.containsKey(telefono)) {
             directorio.remove(telefono);
             return true;

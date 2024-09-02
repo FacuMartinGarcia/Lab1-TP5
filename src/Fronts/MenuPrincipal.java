@@ -23,6 +23,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.setTitle("Directorio Telefonico");
         this.setResizable(false);
         directorio = new Directorio();
+        directorio.agregarVariosContactos();
         
     }
 
@@ -47,11 +48,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 669, Short.MAX_VALUE)
+            .addGap(0, 776, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 485, Short.MAX_VALUE)
+            .addGap(0, 567, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Menu Principal");
