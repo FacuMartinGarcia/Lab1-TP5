@@ -22,6 +22,7 @@ public class FormDirectorio extends javax.swing.JInternalFrame {
     public FormDirectorio(Directorio directorio) {
         this.directorio=directorio;
         initComponents();
+        this.setTitle("Directorio");
     }
 
     /**
